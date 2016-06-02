@@ -60,6 +60,7 @@ use fingerbank::Redis;
 use fingerbank::DB;
 use pf::cluster;
 use Time::HiRes qw(time);
+use pf::dhcpd;
 
 pf::SwitchFactory->preloadConfiguredModules();
 
@@ -271,6 +272,13 @@ sub registertasks  {
         'cluster_check',
         'cluster_check_interval',
         \&cluster_check
+    );
+    register_task (
+        'ping_dhcpd',
+        'ping_dhcpd_interval',
+        sub {
+            ping_dhcpd() if isenabled($cluster_enabled);
+        }
     );
 }
 

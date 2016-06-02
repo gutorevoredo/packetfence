@@ -1342,6 +1342,12 @@ fingerbank_data_update_interval=1D
 #
 # Interval at which PacketFence updates the local Fingerbank data from the cloud API
 cluster_check_interval=1m
+#
+# maintenance.ping_dhcpd_interval
+#
+# Interval at which PacketFence will query dhcpd servers to know if there are alive
+#
+ping_dhcpd_interval=20s
 
 [active_active]
 #
