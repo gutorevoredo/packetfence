@@ -95,9 +95,13 @@ sub authorize {
     my $logger = $self->logger;
     my($switch_mac, $switch_ip,$source_ip,$stripped_user_name,$realm) = $self->_parseRequest($radius_request);
     my $RAD_REPLY_REF;
-
+    my $options = {
+        scope => 'radius_authorize',
+        radius_request => $radius_request,
+    };
+    
     $logger->debug("instantiating switch");
-    my $switch = pf::SwitchFactory->instantiate({ switch_mac => $switch_mac, switch_ip => $switch_ip, controllerIp => $source_ip});
+    my $switch = pf::SwitchFactory->instantiate({ switch_mac => $switch_mac, switch_ip => $switch_ip, controllerIp => $source_ip}, $options);
 
     # is switch object correct?
     if (!$switch) {
