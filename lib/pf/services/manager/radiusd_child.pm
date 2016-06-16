@@ -435,7 +435,7 @@ EOT
 	ok
 	}
 	else {
-		reject
+		noop
 	}
 }
 
@@ -509,7 +509,7 @@ EOT
 	ok
         }
         else {
-                reject
+                noop
         }
 }
 
