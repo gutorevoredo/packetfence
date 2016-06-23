@@ -281,6 +281,7 @@ rest rest-cli {
 		lifetime = 0
 		idle_timeout = 60
 	}
+}
 
 rest rest-dhcp {
         tls {

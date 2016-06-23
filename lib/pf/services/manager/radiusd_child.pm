@@ -32,6 +32,7 @@ use pf::config qw(
     $local_secret
     @listen_ints
     %ConfigNetworks
+    @dhcplistener_ints
 );
 use NetAddr::IP;
 use pf::cluster;
