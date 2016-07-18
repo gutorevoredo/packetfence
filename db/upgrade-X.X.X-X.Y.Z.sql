@@ -22,3 +22,18 @@ SET @VERSION_INT = @MAJOR_VERSION << 16 | @MINOR_VERSION << 8 | @SUBMINOR_VERSIO
 --
 
 ALTER TABLE radacct ADD KEY `callingstationid` (`callingstationid`);
+
+
+--
+-- Add 'radreply' table
+--
+
+CREATE TABLE radreply (
+  id int(11) unsigned NOT NULL auto_increment,
+  username varchar(64) NOT NULL default '',
+  attribute varchar(64) NOT NULL default '',
+  op char(2) NOT NULL DEFAULT '=',
+  value varchar(253) NOT NULL default '',
+  PRIMARY KEY  (id),
+  KEY username (username(32))
+);
