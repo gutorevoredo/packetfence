@@ -146,6 +146,8 @@ our (
     %ConfigSwitchesGroup,
 #Switches List
     %ConfigSwitchesList,
+#RadiusRemote
+    %ConfigRadiusRemote,
 );
 
 BEGIN {
@@ -202,6 +204,7 @@ BEGIN {
         $local_secret
         %ConfigSwitchesGroup
         %ConfigSwitchesList
+        %ConfigRadiusRemote
     );
 }
 
@@ -279,6 +282,8 @@ tie $local_secret, 'pfconfig::cached_scalar', 'resource::local_secret';
 tie %ConfigSwitchesGroup, 'pfconfig::cached_hash', 'resource::switches_group';
 
 tie %ConfigSwitchesList, 'pfconfig::cached_hash', 'resource::switches_list';
+
+tie %ConfigRadiusRemote, 'pfconfig::cached_hash', 'config::RadiusRemote';
 
 use pf::util::apache qw(url_parser);
 
