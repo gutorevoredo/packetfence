@@ -85,6 +85,7 @@ our (
     $captiveportal_templates_path,
     $captiveportal_profile_templates_path,
     $captiveportal_default_profile_templates_path,
+    $control_dir
 );
 
 BEGIN {
@@ -144,6 +145,7 @@ BEGIN {
         $captiveportal_templates_path
         $captiveportal_profile_templates_path
         $captiveportal_default_profile_templates_path
+        $control_dir
     );
 }
 
@@ -160,6 +162,7 @@ $log_conf_dir  = catdir( $conf_dir,"log.conf.d" );
 
 $generated_conf_dir   = catdir( $var_dir,"conf");
 $tt_compile_cache_dir = catdir( $var_dir,"tt_compile_cache");
+$control_dir  = catdir( $var_dir,"control");
 $pfconfig_cache_dir = catdir( $var_dir,"cache/pfconfig");
 $domains_chroot_dir = catdir( "/chroots");
 
