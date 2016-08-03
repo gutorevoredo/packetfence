@@ -344,6 +344,7 @@ sub generate_radiusd_dhcpd {
     $tags{'socket_file'} = "$var_dir/run/radiusd-dhcpd.sock";
 
     foreach my $interface ( @listen_ints ) {
+        my $vlan = get_vlan_from_int($interface);
         my $cfg = $Config{"interface $interface"};
         next unless $cfg;
         my $enforcement = $cfg->{'enforcement'};
@@ -429,6 +430,8 @@ EOT
 				&request:DHCP-DHCP-Server-Identifier = $cfg->{'ip'}
 				&request:DHCP-Domain-Name = $net{'domain-name'}
 				&request:DHCP-Site-specific-0 = $enforcement
+				&request:DHCP-Site-specific-1 = $interface
+				&request:DHCP-Site-specific-2 = $vlan
 			}
 		}
 EOT
@@ -512,6 +515,8 @@ EOT
 			&request:DHCP-DHCP-Server-Identifier = $cfg->{'ip'}
 			&request:DHCP-Domain-Name = $net{'domain-name'}
 			&request:DHCP-Site-specific-0 = $enforcement
+			&request:DHCP-Site-specific-1 = $interface
+			&request:DHCP-Site-specific-2 = $vlan
 		}
 	}
 
