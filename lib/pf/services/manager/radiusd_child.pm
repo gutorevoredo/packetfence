@@ -22,13 +22,13 @@ use List::MoreUtils qw(any);
 use Moo;
 use NetAddr::IP;
 
+use pf::cluster;
 use pf::config qw(
     %Config
     $management_network
     %ConfigDomain
     $local_secret
 );
-use pf::cluster;
 use pf::file_paths qw(
     $conf_dir
     $install_dir
