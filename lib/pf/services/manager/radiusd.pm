@@ -18,6 +18,7 @@ use warnings;
 use List::MoreUtils qw(any);
 use Moo;
 
+use pf::authentication;
 use pf::cluster;
 use pf::file_paths qw(
     $var_dir
@@ -52,6 +53,14 @@ sub _build_radiusdManagers {
     $listens->{acct} = {
       launcher => $self->launcher . " -n acct"
     };
+
+    # 'Eduroam' RADIUS instance manager
+    if ( @{pf::authentication::getAuthenticationSourcesByType('Eduroam')} ) {
+        $listens->{eduroam} = {
+            launcher => $self->launcher . " -n eduroam"
+        };
+    }
+
     my @switches = tied(%pf::SwitchFactory::SwitchConfig)->values();
     if (any { exists $_->{cliAccess} && isenabled($_->{cliAccess}) } @switches) {
         $listens->{cli} = {
